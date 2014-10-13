@@ -1,40 +1,14 @@
 /**
  * Created by eDelgado on 09-10-14.
  */
-var  Slth = require('./lib/Slth.js');
+var  Slth = require('./lib/SlthClient.js')
+var client = new Slth();
 
 
-start();
-
-function start (){
-    var device = new Slth();
-
-    if(device.connected){
-        console.log(device.count());
-        device.setInterval(1);
-        device.start();
-        setTimeout(device.stop, 2000 * 1000);
-        console.log("Total of Samples " +device.numberOfSamples());
-    }
-
-
-    // Evento nueva medición
-    device.on('newSample', function(data){
-        console.log(
-                device.numberOfSamples()+"\t"+
-                data.temperature+ " ºc " + "\t" +
-                data.light+" lux " + "\t" +
-                data.humidity + " hs" );
-    });
-
-    // Evento slth desconectado
-    device.on('detached', function(e){
-        console.log("Slth is detached");
-    });
-
-    // Evento slth conectada
-    device.on('attached', function(dev){
-        // auto start
-        device.start();
-    });
-}
+client.thingSpeakSetting({
+    channel : 17536,
+    apiWriteKey :'your Write Key',
+    apiReadKey : 'your Read Key (opcional)'
+});
+//paso parámetro de intervalo de medición
+client.init(1);

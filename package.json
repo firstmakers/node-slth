@@ -4,6 +4,7 @@
   "author": "Edison Delgado ",
   "description": "A simple module for slth devices",
   "dependencies": {
-    "node-hid": "^0.3.1"
+    "node-hid": "^0.3.1",
+    "thingspeakclient": "^0.4.0"
   }
 }
